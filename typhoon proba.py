@@ -2,7 +2,7 @@ from typhoon.api.schematic_editor import SchematicAPI
 import typhoon.api.hil as hil
 
 
-
+#Ovo je komentar
 
 #Definisanje funkcije testiranja
 def dummy_test():
