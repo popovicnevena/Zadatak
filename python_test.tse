@@ -1,0 +1,397 @@
+version = 4.2
+
+//
+// Saved by sw version: 2026.1 SP1
+//
+
+model "python_test" {
+    configuration {
+        hil_device = "VHIL+"
+        hil_configuration_id = 1
+        simulation_method = exact
+        simulation_time_step = auto
+        simulation_discret_scaling = 1.0
+        dsp_timer_periods = 100e-6, 50e-3
+        ss_calc_method = "systematic elimination"
+        enb_pole_shift = True
+        enb_gds_oversampling = True
+        show_modes = False
+        device_ao_limit_enable = False
+        reset_analog_outputs_on_sim_stop = True
+        reset_analog_outputs_on_sim_stop_mode = Offset values
+        reset_digital_outputs_on_sim_stop = True
+        vhil_adio_loopback = False
+        dma_enable = False
+        cpl_stb = False
+        enb_dep_sw_detect = False
+        code_section = "internal memory"
+        data_section = "internal memory"
+        sys_sp_rate_1 = 0.0001
+        sys_sp_rate_2 = 0.05
+        sys_real_type_precision = "default"
+        user_real_type_precision = "default"
+        sys_cpu_optimization = "high"
+        user_cpu_optimization = "high"
+        user_cpu_part_option = "default"
+        matrix_based_reduction = True
+        cpl_dynamics_analysis = False
+        export_ss_to_pickle = False
+        ground_scope_core = False
+        dss_num_tol = 1e-15
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_term_var_location = "local"
+        cce_directory = ""
+        cce_custom_type_int = ""
+        cce_custom_type_uint = ""
+        cce_custom_type_real = ""
+        tunable_params = "component defined"
+        sp_compiler_type = "C compiler"
+        sig_stim = "off"
+        export_resource_list = ""
+        export_dependency_list = ""
+        excluded_resource_list = ""
+        excluded_component_from_locking_list = ""
+        export_out_file = ""
+        export_lock_top_level = True
+        export_encrypt_library = True
+        export_encrypt_resources = True
+        solver_type = "DAE"
+        integration_method = "BDF"
+        max_sim_step = 1e-4
+        simulation_time = 1.0
+        abs_tol = 1e-3
+        rel_tol = 1e-3
+        init_sim_step = 1e-6
+        r_on_sw = 1e-3
+        v_on_diode = 0.1
+        data_sampling_rate = 0
+        feedthrough_validation_error_level = error
+    }
+
+    component Subsystem Root {
+        component "core/Three Phase Voltage Source" Vs1 {
+            init_rms_value = "36353"
+        }
+        [
+            position = 7780, 8156
+            size = 62, 256
+        ]
+
+        component "core/Resistor" R1 {
+            resistance = "1e-3"
+        }
+        [
+            position = 7952, 8060
+        ]
+
+        component "core/Resistor" R2 {
+            resistance = "1e-3"
+        }
+        [
+            position = 7952, 8156
+        ]
+
+        component "core/Resistor" R3 {
+            resistance = "1e-3"
+        }
+        [
+            position = 7952, 8252
+        ]
+
+        component "core/Inductor" L1 {
+            inductance = "5e-3"
+        }
+        [
+            position = 8084, 8060
+        ]
+
+        component "core/Inductor" L2 {
+            inductance = "5e-3"
+        }
+        [
+            position = 8084, 8156
+        ]
+
+        component "core/Inductor" L3 {
+            inductance = "5e-3"
+        }
+        [
+            position = 8088, 8252
+        ]
+
+        component "core/Three-phase Meter" "Three-phase Meter1" {
+            IN = "True"
+            I_rms = "True"
+            P_meas = "True"
+            VAB = "True"
+            VBC = "True"
+            VCA = "True"
+            VLL_rms = "True"
+            VLn_rms = "True"
+            VN = "True"
+            freq = "True"
+        }
+        [
+            position = 8252, 8156
+            size = 56, 240
+        ]
+
+        component "core/Triple Pole Single Throw Contactor" S1 {
+        }
+        [
+            position = 8432, 8156
+            size = 64, 256
+        ]
+
+        component "core/Three-phase Meter" "Three-phase Meter2" {
+            IN = "True"
+            I_rms = "True"
+            P_meas = "True"
+            VAB = "True"
+            VBC = "True"
+            VCA = "True"
+            VLL_rms = "True"
+            VLn_rms = "True"
+            VN = "True"
+            freq = "True"
+        }
+        [
+            position = 9060, 8156
+            size = 56, 240
+        ]
+
+        component "core/Triple Pole Single Throw Contactor" S2 {
+        }
+        [
+            position = 9232, 8156
+            size = 64, 256
+        ]
+
+        component "core/Resistor" Ra_load {
+            resistance = "100"
+        }
+        [
+            position = 9432, 8060
+        ]
+
+        component "core/Resistor" Rb_load {
+            resistance = "100"
+        }
+        [
+            position = 9432, 8156
+        ]
+
+        component "core/Resistor" Rc_load {
+            resistance = "100"
+        }
+        [
+            position = 9432, 8252
+        ]
+
+        component "core/Transmission Line" "Transmission Line1" {
+            Frequency = "50"
+            L_sequence_metric = "[[0.054, 0.0, 0.0], [0.0, 0.0153, 0.0], [0.0, 0.0, 0.0153]]"
+            Length_metric = "1"
+            R_sequence_metric = "[[3.745, 0.0, 0.0], [0.0, 1.888, 0.0], [0.0, 0.0, 1.888]]"
+            model_def = "Sequence"
+            unit_sys = "metric"
+        }
+        [
+            position = 8732, 8140
+            size = 256, 72
+        ]
+
+        junction Junction1 pe
+        [
+            position = 9488, 8156
+        ]
+
+        connect Vs1.a_node R1.p_node as Connection1
+        connect Vs1.b_node R2.p_node as Connection2
+        connect Vs1.c_node R3.p_node as Connection3
+        connect R1.n_node L1.p_node as Connection4
+        connect R3.n_node L3.p_node as Connection5
+        connect L2.p_node R2.n_node as Connection6
+        connect "Three-phase Meter1.A+" L1.n_node as Connection7
+        connect "Three-phase Meter1.B+" L2.n_node as Connection8
+        connect "Three-phase Meter1.C+" L3.n_node as Connection9
+        connect "Three-phase Meter1.A-" S1.a_in as Connection10
+        connect "Three-phase Meter1.B-" S1.b_in as Connection11
+        connect "Three-phase Meter1.C-" S1.c_in as Connection12
+        connect "Three-phase Meter2.A-" S2.a_in as Connection19
+        connect "Three-phase Meter2.B-" S2.b_in as Connection20
+        connect "Three-phase Meter2.C-" S2.c_in as Connection21
+        connect S2.a_out Ra_load.p_node as Connection22
+        connect S2.b_out Rb_load.p_node as Connection23
+        connect S2.c_out Rc_load.p_node as Connection24
+        connect Rb_load.n_node Junction1 as Connection25
+        connect Ra_load.n_node Junction1 as Connection26
+        connect Rc_load.n_node Junction1 as Connection27
+        connect S1.a_out "Transmission Line1.a_in" as Connection28
+        connect S1.b_out "Transmission Line1.b_in" as Connection29
+        connect S1.c_out "Transmission Line1.c_in" as Connection30
+        connect "Transmission Line1.a_out" "Three-phase Meter2.A+" as Connection31
+        connect "Transmission Line1.b_out" "Three-phase Meter2.B+" as Connection32
+        connect "Transmission Line1.c_out" "Three-phase Meter2.C+" as Connection33
+    }
+
+    default {
+        "core/Inductor" {
+            signal_access = "inherit"
+            inductance = "1e-3"
+            initial_current = "0.0"
+            pole_shift_ignore = "False"
+            visible = "True"
+        }
+
+        "core/Resistor" {
+            resistance = "1"
+            param_set = ""
+        }
+
+        "core/Three Phase Voltage Source" {
+            init_rms_value = "0.0"
+            init_frequency = "50.0"
+            init_phase = "0.0"
+        }
+
+        "core/Three-phase Meter" {
+            R = "1e5"
+            n_cycles = "1"
+            Ts = "100e-6"
+            enable_probes = "True"
+            enable_out = "True"
+            remove_snubber = "False"
+            enable_bandwidth = "False"
+            bandwidth = "10e3"
+            VAn = "True"
+            VBn = "True"
+            VCn = "True"
+            VAB = "False"
+            VBC = "False"
+            VCA = "False"
+            VN = "False"
+            IA = "True"
+            IB = "True"
+            IC = "True"
+            IN = "False"
+            freq = "False"
+            VLn_rms = "False"
+            VLL_rms = "False"
+            VLn_avg_rms = "False"
+            VLL_avg_rms = "False"
+            VN_rms = "False"
+            I_rms = "False"
+            I_avg_rms = "False"
+            IN_rms = "False"
+            P_method = "alpha-beta"
+            enable_extra_out = "False"
+            P_meas = "False"
+        }
+
+        "core/Transmission Line" {
+            model = "RL coupled"
+            num_of_phases = "3"
+            model_def = "Geometry"
+            unit_sys = "imperial"
+            unit_sys_edited_flag = "0"
+            Length_metric = "100.0"
+            Length_miles = "62.1371"
+            Frequency = "60.0"
+            Earth_resistivity = "100"
+            X_axis_1_metric = "-1.0668"
+            Y_axis_1_metric = "8.5344"
+            GMR_1_metric = "0.00743712"
+            RD_1_metric = "0.009156192"
+            Rs_1_metric = "0.19013958482462417"
+            X_axis_1_imperial = "-3.5"
+            Y_axis_1_imperial = "28.0"
+            GMR_1_imperial = "0.0244"
+            RD_1_imperial = "0.03004"
+            Rs_1_imperial = "0.306"
+            X_axis_2_metric = "-0.3048"
+            Y_axis_2_metric = "8.5344"
+            GMR_2_metric = "0.00743712"
+            RD_2_metric = "0.009156192"
+            Rs_2_metric = "0.19013958482462417"
+            X_axis_2_imperial = "-1.0"
+            Y_axis_2_imperial = "28.0"
+            GMR_2_imperial = "0.0244"
+            RD_2_imperial = "0.03004"
+            Rs_2_imperial = "0.306"
+            X_axis_3_metric = "1.0668"
+            Y_axis_3_metric = "8.5344"
+            GMR_3_metric = "0.00743712"
+            RD_3_metric = "0.009156192"
+            Rs_3_metric = "0.19013958482462417"
+            X_axis_3_imperial = "3.5"
+            Y_axis_3_imperial = "28.0"
+            GMR_3_imperial = "0.0244"
+            RD_3_imperial = "0.03004"
+            Rs_3_imperial = "0.306"
+            X_axis_4_metric = "0.1524"
+            Y_axis_4_metric = "7.3152"
+            GMR_4_metric = "0.00248"
+            RD_4_metric = "0.00714"
+            Rs_4_metric = "0.3678"
+            X_axis_4_imperial = "0.5"
+            Y_axis_4_imperial = "24.0"
+            GMR_4_imperial = "0.00814"
+            RD_4_imperial = "0.02345"
+            Rs_4_imperial = "0.592"
+            R_metric = "[[0.2481, 0.0579, 0.0579], [0.0579, 0.2481, 0.0579], [0.0579, 0.0579, 0.2481]]"
+            R_imperial = "[[0.4, 0.093, 0.093], [0.093, 0.4, 0.093], [0.093, 0.093, 0.4]]"
+            L_metric = "[[0.00233, 0.00140, 0.00140], [0.00140, 0.00233, 0.00140], [0.00140, 0.00140, 0.00233]]"
+            L_imperial = "[[0.00374, 0.0022, 0.0022], [0.0022, 0.00374, 0.0022], [0.0022, 0.0022, 0.00374]]"
+            C_metric = "[[8.546e-9, 0, 0], [0, 8.546e-9, 0], [0, 0, 8.546e-9]]"
+            C_imperial = "[[1.471e-8, 0, 0], [0, 1.530e-8, 0], [0, 0, 1.375e-8]]"
+            R_sequence_metric = "[[0.3864, 0, 0],[0, 0.01273, 0], [0, 0, 0.01273]]"
+            L_sequence_metric = "[[4.1264e-3, 0, 0],[0, 0.9337e-3, 0], [0, 0, 0.9337e-3]]"
+            C_sequence_metric = "[[7.751e-9, 0, 0],[0, 12.74e-9, 0], [0, 0, 12.74e-9]]"
+            R_sequence_imperial = "[[0.6218, 0, 0],[0, 0.0204, 0], [0, 0, 0.0204]]"
+            L_sequence_imperial = "[[0.00664, 0, 0],[0, 0.00150, 0], [0, 0, 0.00150]]"
+            C_sequence_imperial = "[[1.247e-8, 0, 0],[0, 2.0503e-8, 0], [0, 0, 2.0503e-8]]"
+            import_from_geometry = "Import from Geometry"
+            import_from_RLC = "Import from RLC"
+            type_of_trans = "trans_line"
+            embedded_coupling = "False"
+            ratio_type = "Manual"
+            ratio = "0.01"
+        }
+
+        "core/Triple Pole Single Throw Contactor" {
+            signal_access = "inherit"
+            switches_option = "False"
+            resistance = "1.0"
+            ctrl_src = "Digital input"
+            Sa = "1"
+            Sa_logic = "active high"
+            enable_fb_out = "False"
+            fb_out_type = "real"
+            execution_rate = "inherit"
+            dtsm_switch_name = ""
+            initial_state = "off"
+            on_delay = "0"
+            off_delay = "0"
+            switching = "zero current"
+            hide_int_meas = "False"
+        }
+    }
+
+    CODE model_init
+        # Numpy module is imported as 'np'
+        # Scipy module is imported as 'sp'
+        # The Schematic API is imported as 'mdl'
+        # To get the model file path, use 'mdl.get_model_file_path()'
+        # To print information to the console, use info()
+    ENDCODE
+}
